@@ -49,19 +49,19 @@ local aractamir = {
 Citizen.Wait(0)
 for k in pairs (aractamir) do
 
-    local plyCoords = GetEntityCoords(GetPlayerPed(-1), false)       
+    local plyCoords = GetEntityCoords(PlayerPedId(), false)       
     local dist = Vdist(plyCoords.x, plyCoords.y, plyCoords.z, aractamir[k].x, aractamir[k].y, aractamir[k].z)
     local ped = PlayerPedId()
     local vehicle = GetVehiclePedIsIn(ped, false)  
    
 
-    if IsPedInAnyVehicle(GetPlayerPed(-1), true) then
+    if IsPedInAnyVehicle (PlayerPedId(), true) then
         if dist <= 3 and not frkntamir then
 
                     Frkn3d(718.15, -1081.37, 22.28, "[E] - Aracı tamir et")
                   if IsControlJustPressed(0, Keys['E']) then
                     ESX.TriggerServerCallback('frkn_npcrepair:mekanikvarmı',function(online)
-                        if online ==1 then
+                        if online >=1 then
                            exports['mythic_notify']:DoHudText('error', "Şehirde mekanik varken ben çalışmam!")
                         else
                     FreezeEntityPosition(GetVehiclePedIsIn(PlayerPedId()), true)
@@ -96,9 +96,10 @@ end
         if not npcfrkntamir then
             local hoopfrkn = CreatePed(6, frknnnn, 720.65, -1073.07, 22.06, 95.65, false, false)
             SetBlockingOfNonTemporaryEvents(hoopfrkn, true)
-            SetPedDiesWhenInjured(hoopfrkn, true)
-            SetPedCanRagdollFromPlayerImpact(hoopfrkn, true)
-            SetPedCanRagdoll(hoopfrkn, true)
+            SetPedDiesWhenInjured(hoopfrkn, false)
+            SetPedCanPlayAmbientAnims(hoopfrkn, true)
+            SetPedCanRagdollFromPlayerImpact(hoopfrkn, false)
+            SetEntityInvincible(hoopfrkn, true)
             FreezeEntityPosition(hoopfrkn, true)
             loadAnimDict('amb@prop_human_bum_shopping_cart@male@idle_a')
             if not IsEntityPlayingAnim(hoopfrkn, "amb@prop_human_bum_shopping_cart@male@idle_a", "idle_c", 3) then
