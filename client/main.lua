@@ -23,15 +23,6 @@ Citizen.CreateThread(function()
 end)
 
 
-Citizen.CreateThread(function()
-    while true do 
-        player = PlayerPedId()
-        playerCoords = GetEntityCoords(player)
-        entityMaxHealth = GetEntityMaxHealth(player)
-        id = GetPlayerServerId(player)
-        Citizen.Wait(3500)
-    end
-end)
 
 RegisterNetEvent('esx:playerLoaded')
 AddEventHandler('esx:playerLoaded', function(xPlayer)
